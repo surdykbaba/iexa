@@ -59,8 +59,62 @@
   .navlinks{display:flex;gap:30px;align-items:center}
   .navlinks a{font-size:15px;font-weight:500;color:var(--muted)}
   .navlinks a:hover{color:var(--indigo)}
-  .nav-cta{display:flex;gap:12px;align-items:center}
-  @media(max-width:860px){.navlinks{display:none}.nav-cta .btn-text{display:none}}
+  .nav-cta{display:flex;gap:10px;align-items:center}
+  /* smart nav: progress + shrink + active */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
+    background:linear-gradient(90deg,var(--teal),var(--gold));transition:width .08s linear}
+  header.shrink{box-shadow:0 6px 22px rgba(16,24,40,.07)}
+  header.shrink nav{height:60px}
+  .navlinks a{position:relative;transition:color .15s}
+  .navlinks a.active{color:var(--indigo);font-weight:600}
+  .navlinks a.active::after{content:"";position:absolute;left:0;right:0;bottom:-24px;height:2px;
+    background:var(--teal);border-radius:2px}
+  header.shrink .navlinks a.active::after{bottom:-19px}
+  /* ⌘K search button */
+  .kbtn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:var(--muted);
+    background:var(--bg-soft);border:1px solid var(--line);padding:7px 11px;border-radius:9px;cursor:pointer;
+    font-family:inherit;transition:.15s}
+  .kbtn:hover{border-color:#cfd6e2;color:var(--indigo)}
+  .kbtn kbd{font-family:ui-monospace,Menlo,monospace;font-size:11px;background:#fff;border:1px solid var(--line);
+    border-radius:5px;padding:1px 5px;color:var(--muted)}
+  /* hamburger */
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+  .burger span{width:22px;height:2px;background:var(--indigo);border-radius:2px;transition:.25s}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  /* mobile panel */
+  .mobile-menu{position:fixed;top:70px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);
+    z-index:55;transform:translateY(-14px);opacity:0;pointer-events:none;transition:.22s;
+    padding:10px 24px 22px;max-height:calc(100vh - 70px);overflow:auto;box-shadow:0 18px 40px rgba(16,24,40,.1)}
+  .mobile-menu.open{transform:none;opacity:1;pointer-events:auto}
+  .mobile-menu a{display:flex;justify-content:space-between;align-items:center;padding:14px 4px;
+    font-size:17px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)}
+  .mobile-menu a.active{color:var(--teal)}
+  .mobile-menu a.active::before{content:"›";color:var(--teal)}
+  .mobile-menu .m-join{margin-top:16px;width:100%;justify-content:center;border:0}
+  @media(max-width:860px){
+    .navlinks{display:none}.kbtn .ktext{display:none}.kbtn kbd{display:none}.burger{display:flex}
+  }
+  /* command palette */
+  .cmdk{position:fixed;inset:0;z-index:80;display:none;align-items:flex-start;justify-content:center;
+    background:rgba(15,28,48,.45);backdrop-filter:blur(3px);padding-top:13vh}
+  .cmdk.open{display:flex}
+  .cmdk-box{width:min(560px,92vw);background:#fff;border-radius:16px;overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.35);border:1px solid var(--line)}
+  .cmdk-in{width:100%;border:0;outline:0;padding:18px 20px;font-size:17px;font-family:inherit;color:var(--ink);
+    border-bottom:1px solid var(--line)}
+  .cmdk-list{max-height:340px;overflow:auto;padding:8px}
+  .cmdk-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;cursor:pointer}
+  .cmdk-item .ci-ic{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;
+    background:rgba(15,44,77,.07);font-size:15px;flex:none}
+  .cmdk-item .ci-t{font-weight:600;font-size:15px;color:var(--ink)}
+  .cmdk-item .ci-s{font-size:12px;color:var(--muted)}
+  .cmdk-item.sel{background:var(--bg-soft)}
+  .cmdk-empty{padding:22px;text-align:center;color:var(--muted);font-size:14px}
+  .cmdk-foot{display:flex;gap:16px;padding:10px 16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+  .cmdk-foot kbd{font-family:ui-monospace,Menlo,monospace;background:var(--bg-soft);border:1px solid var(--line);
+    border-radius:4px;padding:1px 5px}
 
   /* HERO */
   .hero{position:relative;color:#fff;overflow:hidden;
@@ -180,8 +234,9 @@
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
 
-<header>
+<header id="hdr">
   <nav class="wrap">
     <a class="brand" href="#"><span class="logo"></span> IDXA</a>
     <div class="navlinks">
@@ -195,11 +250,13 @@
       <a href="#resources">Resources</a>
     </div>
     <div class="nav-cta">
-      <a class="btn-text navlinks" href="#" style="font-weight:500;color:var(--muted)">Sign in</a>
+      <button class="kbtn" id="cmdkBtn" aria-label="Search the site"><span>🔍</span><span class="ktext">Search</span><kbd>⌘K</kbd></button>
       <a class="btn btn-dark" href="#join">Join IDXA</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </nav>
 </header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation"></nav>
 
 <!-- HERO -->
 <div class="hero">
@@ -622,6 +679,151 @@
     </div>
   </div>
 </footer>
+
+<!-- COMMAND PALETTE -->
+<div class="cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="Quick navigation">
+  <div class="cmdk-box">
+    <input class="cmdk-in" id="cmdkInput" placeholder="Jump to a section or resource…" autocomplete="off" spellcheck="false" />
+    <div class="cmdk-list" id="cmdkList"></div>
+    <div class="cmdk-foot">
+      <span><kbd>↑</kbd> <kbd>↓</kbd> navigate</span>
+      <span><kbd>↵</kbd> open</span>
+      <span><kbd>esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var hdr=document.getElementById('hdr'),
+      progress=document.getElementById('progress'),
+      burger=document.getElementById('burger'),
+      mobile=document.getElementById('mobileMenu'),
+      cmdk=document.getElementById('cmdk'),
+      input=document.getElementById('cmdkInput'),
+      list=document.getElementById('cmdkList'),
+      sectionLinks=[].slice.call(document.querySelectorAll('.navlinks a'));
+
+  // Section emoji map (used in nav + palette)
+  var ICON={'#what':'📐','#how':'🔗','#exchange':'🧩','#rails':'💳','#membership':'🤝',
+            '#community':'🌍','#roadmap':'🧭','#resources':'⌥','#join':'★'};
+
+  // Build the mobile menu from the desktop nav so they never drift apart
+  sectionLinks.forEach(function(a){
+    var m=document.createElement('a');
+    m.href=a.getAttribute('href');
+    m.textContent=a.textContent.trim();
+    mobile.appendChild(m);
+  });
+  var joinBtn=document.createElement('a');
+  joinBtn.href='#join'; joinBtn.className='btn btn-dark m-join'; joinBtn.textContent='Join IDXA';
+  mobile.appendChild(joinBtn);
+
+  var allLinks=[].slice.call(document.querySelectorAll('.navlinks a, .mobile-menu a'));
+  var ids=sectionLinks.map(function(a){return a.getAttribute('href');})
+    .filter(function(h){return h&&h.charAt(0)=='#'&&h.length>1;})
+    .map(function(h){return h.slice(1);});
+
+  function setActive(id){
+    allLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')=='#'+id); });
+  }
+
+  // Progress bar + sticky shrink
+  function onScroll(){
+    var st=window.pageYOffset||document.documentElement.scrollTop;
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    progress.style.width=(h>0?(st/h*100):0)+'%';
+    hdr.classList.toggle('shrink', st>20);
+    // Scroll-spy: the last section whose top has passed a line below the header
+    var pos=st+140, current=ids[0];
+    for(var i=0;i<ids.length;i++){ var el=document.getElementById(ids[i]); if(el&&el.offsetTop<=pos) current=ids[i]; }
+    if(current) setActive(current);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // Hamburger / mobile menu
+  function closeMobile(){ burger.classList.remove('open'); mobile.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click', function(){
+    var open=burger.classList.toggle('open'); mobile.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open?'true':'false');
+  });
+  mobile.addEventListener('click', function(e){ if(e.target.tagName=='A') closeMobile(); });
+
+  // ---------- Command palette ----------
+  // Concept keywords so a search matches meaning, not just the menu label
+  var KEY={'#what':'standards trust framework federation pillars open source',
+    '#how':'four corner member node once only principle registry connect security',
+    '#exchange':'data spaces invoicing invoice identity kyc domains profiles',
+    '#rails':'interoperability emvco rtp request to pay vat lottery iso 20022 peppol ubl gs1 payment settlement tax papss mojaloop open banking',
+    '#membership':'contributor provider authority join governance tiers members',
+    '#community':'hubs academy lighthouse working groups young minds nigeria',
+    '#roadmap':'phases digital public good pilots pan african scale milestones',
+    '#resources':'developers github specs quickstart architecture whitepaper source code apache'};
+  function buildItems(){
+    var items=[];
+    sectionLinks.forEach(function(a){
+      var href=a.getAttribute('href');
+      items.push({title:a.textContent.trim(), sub:'Section', href:href, icon:ICON[href]||'›', ext:false, kw:KEY[href]||''});
+    });
+    [].slice.call(document.querySelectorAll('#resources .reslink')).forEach(function(a){
+      var h3=a.querySelector('h3'), ic=a.querySelector('.ic'), pp=a.querySelector('p');
+      items.push({title:(h3?h3.textContent:'').replace('→','').trim(), sub:'Resource',
+        href:a.getAttribute('href'), icon:ic?ic.textContent.trim():'↗', ext:true,
+        kw:(pp?pp.textContent:'').toLowerCase()});
+    });
+    items.push({title:'Join IDXA', sub:'Action', href:'#join', icon:'★', ext:false, kw:'membership apply contribute get involved'});
+    return items;
+  }
+  var ALL=buildItems(), filtered=[], sel=0;
+
+  function render(q){
+    q=(q||'').toLowerCase().trim();
+    filtered=ALL.filter(function(it){
+      return !q || it.title.toLowerCase().indexOf(q)>=0 || it.sub.toLowerCase().indexOf(q)>=0 || (it.kw&&it.kw.indexOf(q)>=0);
+    });
+    if(sel>=filtered.length) sel=Math.max(0,filtered.length-1);
+    if(!filtered.length){ list.innerHTML='<div class="cmdk-empty">No matches — try “invoice”, “specs”, or “roadmap”.</div>'; return; }
+    list.innerHTML='';
+    filtered.forEach(function(it,i){
+      var d=document.createElement('div');
+      d.className='cmdk-item'+(i==sel?' sel':'');
+      d.innerHTML='<div class="ci-ic"></div><div><div class="ci-t"></div><div class="ci-s"></div></div>';
+      d.querySelector('.ci-ic').textContent=it.icon;
+      d.querySelector('.ci-t').textContent=it.title;
+      d.querySelector('.ci-s').textContent=it.sub+(it.ext?' · opens in new tab':'');
+      d.addEventListener('click', function(){ go(it); });
+      d.addEventListener('mousemove', function(){ if(sel!=i){ sel=i; paint(); } });
+      list.appendChild(d);
+    });
+  }
+  function paint(){
+    [].slice.call(list.children).forEach(function(c,i){ c.classList.toggle('sel', i==sel); });
+    var el=list.children[sel]; if(el&&el.scrollIntoView) el.scrollIntoView({block:'nearest'});
+  }
+  function go(it){
+    closeCmd();
+    if(it.ext && it.href.charAt(0)!='#'){ window.open(it.href,'_blank','noopener'); return; }
+    var el=document.querySelector(it.href); if(el) el.scrollIntoView({behavior:'smooth'});
+  }
+  function openCmd(){ cmdk.classList.add('open'); input.value=''; sel=0; render(''); setTimeout(function(){ input.focus(); },20); }
+  function closeCmd(){ cmdk.classList.remove('open'); }
+
+  input.addEventListener('input', function(){ sel=0; render(input.value); });
+  document.getElementById('cmdkBtn').addEventListener('click', openCmd);
+  cmdk.addEventListener('click', function(e){ if(e.target==cmdk) closeCmd(); });
+
+  document.addEventListener('keydown', function(e){
+    var open=cmdk.classList.contains('open');
+    if((e.key=='k'||e.key=='K')&&(e.metaKey||e.ctrlKey)){ e.preventDefault(); open?closeCmd():openCmd(); return; }
+    if(e.key=='/'&&!open&&!/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)){ e.preventDefault(); openCmd(); return; }
+    if(!open) return;
+    if(e.key=='Escape'){ closeCmd(); }
+    else if(e.key=='ArrowDown'){ e.preventDefault(); sel=Math.min(sel+1,filtered.length-1); paint(); }
+    else if(e.key=='ArrowUp'){ e.preventDefault(); sel=Math.max(sel-1,0); paint(); }
+    else if(e.key=='Enter'){ e.preventDefault(); if(filtered[sel]) go(filtered[sel]); }
+  });
+})();
+</script>
 
 </body>
 </html>
