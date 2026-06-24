@@ -1,4 +1,4 @@
-// Command node runs an IDXA Member Node.
+// Command node runs an IXEA Member Node.
 //
 //	NODE_ID         member identifier (default "node-1")
 //	NODE_NAME       human-readable name (default = NODE_ID)
@@ -15,8 +15,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/surdykbaba/idxa/internal/node"
-	"github.com/surdykbaba/idxa/internal/registry"
+	"github.com/surdykbaba/ixea/internal/node"
+	"github.com/surdykbaba/ixea/internal/registry"
 )
 
 func main() {
@@ -38,7 +38,7 @@ func main() {
 
 	mux := http.NewServeMux()
 	n.Routes(mux)
-	log.Printf("IDXA node %q listening on %s (endpoint %s)", id, addr, endpoint)
+	log.Printf("IXEA node %q listening on %s (endpoint %s)", id, addr, endpoint)
 	if err := http.ListenAndServe(addr, mux); err != nil {
 		log.Fatal(err)
 	}

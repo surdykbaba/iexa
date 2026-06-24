@@ -1,4 +1,4 @@
-// Command tamperdemo proves IDXA's tamper detection end-to-end. It registers a
+// Command tamperdemo proves IXEA's tamper detection end-to-end. It registers a
 // sender identity, sends a correctly signed invoice (accepted, verified), then
 // sends the SAME message with the payload mutated after signing — which the
 // receiver rejects with 401 because the signature no longer matches.
@@ -13,9 +13,9 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/surdykbaba/idxa/internal/message"
-	"github.com/surdykbaba/idxa/internal/registry"
-	"github.com/surdykbaba/idxa/internal/trust"
+	"github.com/surdykbaba/ixea/internal/message"
+	"github.com/surdykbaba/ixea/internal/registry"
+	"github.com/surdykbaba/ixea/internal/trust"
 )
 
 func main() {

@@ -1,4 +1,4 @@
-// Package message defines the IDXA message envelope — the signed unit of
+// Package message defines the IXEA message envelope — the signed unit of
 // exchange that travels between Member Nodes. The envelope carries a routing
 // header and an opaque payload (the data-space profile, e.g. an invoice or an
 // identity attestation). The signature covers the header and payload together,

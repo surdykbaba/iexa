@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://idxa.africa/specs/envelope.schema.json",
-  "title": "IDXA Message Envelope",
-  "description": "The signed unit of exchange between IDXA Member Nodes. The signature covers the header and payload together.",
+  "$id": "https://ixea.africa/specs/envelope.schema.json",
+  "title": "IXEA Message Envelope",
+  "description": "The signed unit of exchange between IXEA Member Nodes. The signature covers the header and payload together.",
   "type": "object",
   "required": ["header", "payload", "signature"],
   "properties": {

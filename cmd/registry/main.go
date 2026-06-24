@@ -1,4 +1,4 @@
-// Command registry runs the IDXA shared Registry (directory / trust list).
+// Command registry runs the IXEA shared Registry (directory / trust list).
 //
 //	REGISTRY_ADDR   listen address (default ":8090")
 package main
@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/surdykbaba/idxa/internal/registry"
+	"github.com/surdykbaba/ixea/internal/registry"
 )
 
 func main() {
@@ -17,7 +17,7 @@ func main() {
 	mux := http.NewServeMux()
 	store.Routes(mux)
 
-	log.Printf("IDXA registry listening on %s", addr)
+	log.Printf("IXEA registry listening on %s", addr)
 	if err := http.ListenAndServe(addr, mux); err != nil {
 		log.Fatal(err)
 	}

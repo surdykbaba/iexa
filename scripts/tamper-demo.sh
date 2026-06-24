@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# IDXA tamper-detection demo.
+# IXEA tamper-detection demo.
 # Boots a Registry and one receiving Member Node, then sends a correctly signed
 # invoice (accepted) followed by a payload-tampered copy (rejected with 401).
 set -euo pipefail
