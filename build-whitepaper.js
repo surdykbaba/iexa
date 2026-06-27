@@ -83,8 +83,8 @@ function spacer(after = 120) { return new Paragraph({ spacing: { after }, childr
 
 // ---- document ----
 const doc = new Document({
-  creator: "IXEA",
-  title: "IXEA Whitepaper",
+  creator: "IEXA",
+  title: "IEXA Whitepaper",
   description: "Interoperability and Exchange Alliance — Concept & Founding Framework",
   styles: {
     default: { document: { run: { font: "Arial", size: 21, color: INK } } },
@@ -113,7 +113,7 @@ const doc = new Document({
       children: [
         spacer(1600),
         new Paragraph({ alignment: AlignmentType.LEFT, spacing: { after: 80 },
-          children: [new TextRun({ text: "IXEA", bold: true, size: 84, color: INDIGO })] }),
+          children: [new TextRun({ text: "IEXA", bold: true, size: 84, color: INDIGO })] }),
         new Paragraph({ spacing: { after: 400 },
           children: [new TextRun({ text: "Interoperability and Exchange Alliance", size: 32, color: TEAL, bold: true })] }),
         new Paragraph({ spacing: { after: 120 },
@@ -137,7 +137,7 @@ const doc = new Document({
       footers: { default: new Footer({ children: [new Paragraph({
         alignment: AlignmentType.CENTER,
         border: { top: { style: BorderStyle.SINGLE, size: 4, color: "DDE2EA", space: 6 } },
-        children: [new TextRun({ text: "IXEA · Interoperability and Exchange Alliance · v0.1   |   Page ", size: 16, color: MUTED }),
+        children: [new TextRun({ text: "IEXA · Interoperability and Exchange Alliance · v0.1   |   Page ", size: 16, color: MUTED }),
           new TextRun({ children: [PageNumber.CURRENT], size: 16, color: MUTED })] })] }) },
       children: [
         new Paragraph({ spacing: { after: 200 }, children: [new TextRun({ text: "Table of Contents", bold: true, size: 28, color: INDIGO })] }),
@@ -148,12 +148,12 @@ const doc = new Document({
         h1("1. Executive Summary"),
         p("Africa's digital economy is being built on fragmented, disconnected systems. Every bank, fintech, government agency and ERP integrates point-to-point with every other — a costly, brittle web of bespoke connections that locks data in silos, raises the cost of doing business, and leaves the continent's most valuable asset, its data, under foreign control."),
         rich([
-          new TextRun("IXEA — the "),
+          new TextRun("IEXA — the "),
           new TextRun({ text: "Interoperability and Exchange Alliance", bold: true }),
           new TextRun(" — is an open, community-governed framework for secure, federated data exchange across the continent. It is not a product and not owned by any single company. It is a neutral standard, a trust framework, and a community — modelled on the world's most successful interoperability initiatives: Estonia's X-Road, the EU's Gaia-X and Peppol, and the MOSIP identity platform."),
         ]),
         p("This document sets out the concept, the architecture, the governance model, and the roadmap. It is a working draft, published openly to invite the developers, providers, regulators and young technologists who will build it."),
-        callout("In one sentence", "IXEA lets any organisation connect once and securely exchange invoices, identity and trusted data with everyone else on the network — without rebuilding integrations, and without surrendering data sovereignty."),
+        callout("In one sentence", "IEXA lets any organisation connect once and securely exchange invoices, identity and trusted data with everyone else on the network — without rebuilding integrations, and without surrendering data sovereignty."),
 
         // 2. The Problem
         h1("2. The Problem"),
@@ -178,9 +178,9 @@ const doc = new Document({
         bullet("every participant is verifiable; every exchange is signed and auditable.", "Trusted"),
         bullet("designed to interoperate with global standards, never to reinvent them.", "Interoperable"),
 
-        // 4. What is IXEA
-        h1("4. What IXEA Is"),
-        p("IXEA operates on three distinct but connected layers. Keeping them separate is what makes the initiative durable."),
+        // 4. What is IEXA
+        h1("4. What IEXA Is"),
+        p("IEXA operates on three distinct but connected layers. Keeping them separate is what makes the initiative durable."),
         table([
           ["Layer", "What it is", "Comparable to"],
           ["The Association", "The neutral non-profit that sets rules, admits members and accredits providers.", "OpenPeppol AISBL, NIIS (X-Road)"],
@@ -188,43 +188,43 @@ const doc = new Document({
           ["Reference Software", "Open-source nodes and a public sandbox that providers run to join the network.", "X-Road core, MOSIP"],
         ], [2200, 4760, 2400]),
         spacer(80),
-        callout("Why this separation matters", "The value and defensibility of IXEA is in the standard. Whoever stewards the trusted standard for African data exchange anchors the ecosystem. The Association exists to keep that standard neutral and legitimate; the software exists to make adoption easy."),
+        callout("Why this separation matters", "The value and defensibility of IEXA is in the standard. Whoever stewards the trusted standard for African data exchange anchors the ecosystem. The Association exists to keep that standard neutral and legitimate; the software exists to make adoption easy."),
 
         // 5. The Framework — three pillars
         h1("5. The Framework: Three Pillars"),
         h2("Pillar 1 — Open Standards"),
         p("Public, versioned specifications for how data is described, signed and transported, developed through an open RFC process. Anyone can read, use, or propose changes. The standard leads with one use case — e-invoicing — and extends through additional profiles."),
         h2("Pillar 2 — Trust Framework"),
-        p("A verification and accreditation framework with a conformance test suite. Every participant is provably who they claim to be; every message is cryptographically signed and auditable. “IXEA-certified” becomes a meaningful badge that guarantees genuine interoperability and security."),
+        p("A verification and accreditation framework with a conformance test suite. Every participant is provably who they claim to be; every message is cryptographically signed and auditable. “IEXA-certified” becomes a meaningful badge that guarantees genuine interoperability and security."),
         h2("Pillar 3 — Federation"),
         p("A decentralised network of interoperable nodes and Clearing Houses — no single point of control and no central data store. Trust federation lets independent ecosystems and national hubs connect across borders while each retains its autonomy."),
 
         // 6. How it works
         h1("6. How It Works"),
-        p("Each member runs (or rents) a single secure node — the only component they integrate with. Through IXEA's shared registry and trust services, that one connection reaches every other participant. There are no point-to-point integrations and no central honeypot of data."),
+        p("Each member runs (or rents) a single secure node — the only component they integrate with. Through IEXA's shared registry and trust services, that one connection reaches every other participant. There are no point-to-point integrations and no central honeypot of data."),
         table([
           ["Step", "Role", "What happens"],
           ["1", "Sender", "A business, bank or agency needs to send data."],
-          ["2", "Member Node", "A secure gateway signs, encrypts and routes the message onto IXEA."],
+          ["2", "Member Node", "A secure gateway signs, encrypts and routes the message onto IEXA."],
           ["3", "Member Node", "The receiver's node is discovered via the shared registry and trust list."],
           ["4", "Receiver", "The destination acts on it — a paid invoice, a verified identity, an exchanged record."],
         ], [1000, 2400, 5960]),
         spacer(80),
-        callout("The Once-Only Principle", "Citizens and businesses should provide the same information to government once — never again. IXEA lets institutions request verified data straight from the source, with consent, instead of asking people to re-submit documents they have already given. Less paperwork, less fraud, more trust."),
+        callout("The Once-Only Principle", "Citizens and businesses should provide the same information to government once — never again. IEXA lets institutions request verified data straight from the source, with consent, instead of asking people to re-submit documents they have already given. Less paperwork, less fraud, more trust."),
 
         // 7. Data Spaces
         h1("7. Data Spaces"),
-        p("IXEA is one framework hosting many data spaces — sectoral ecosystems that share the same trust framework and federation. The strategy is to win one use case with strong regulatory tailwind, then extend."),
+        p("IEXA is one framework hosting many data spaces — sectoral ecosystems that share the same trust framework and federation. The strategy is to win one use case with strong regulatory tailwind, then extend."),
         table([
           ["Data space", "What it carries", "Status"],
           ["Invoicing", "Standardised e-invoice exchange between businesses, ERPs and tax authorities — the wedge use case.", "Available · v0.1"],
           ["Identity", "Consent-driven, signed exchange of verified identity attributes and KYC credentials, interoperable with national identity systems.", "Available · v0.1"],
-          ["Data (general)", "A general-purpose envelope for any domain — health, logistics, open finance — that adopts the IXEA trust framework.", "On roadmap"],
+          ["Data (general)", "A general-purpose envelope for any domain — health, logistics, open finance — that adopts the IEXA trust framework.", "On roadmap"],
         ], [2000, 5360, 2000]),
 
         // 8. Interoperability
         h1("8. Interoperability: Standards & Rails"),
-        p("IXEA does not replace the world's standards — it binds them together, so an IXEA invoice can be paid, settled and reported anywhere."),
+        p("IEXA does not replace the world's standards — it binds them together, so an IEXA invoice can be paid, settled and reported anywhere."),
         h2("Invoice & document standards"),
         p("Peppol BIS · UBL 2.1 · UN/CEFACT CII · EN 16931 · GS1 · national e-invoicing / CTC mandates.", { color: MUTED }),
         h2("Payment & settlement rails"),
@@ -236,11 +236,11 @@ const doc = new Document({
 
         // 9. Governance & Membership
         h1("9. Governance & Membership"),
-        p("IXEA is a neutral, not-for-profit association. Governance is shared across its members; no single company owns the standard. Membership is open in three tiers:"),
+        p("IEXA is a neutral, not-for-profit association. Governance is shared across its members; no single company owns the standard. Membership is open in three tiers:"),
         table([
           ["Tier", "Who", "What they get"],
           ["Contributor", "Developers, students, researchers", "Free access to specs and sandbox; contribute via the open RFC process; join working groups and hackathons."],
-          ["Provider", "Fintechs, vendors, ERPs", "Run certified nodes; earn the IXEA-certified badge; a voting seat in working groups; commercial use under Apache-2.0."],
+          ["Provider", "Fintechs, vendors, ERPs", "Run certified nodes; earn the IEXA-certified badge; a voting seat in working groups; commercial use under Apache-2.0."],
           ["Authority", "Regulators, public agencies", "Shape policy and national profiles; board representation; accreditation oversight."],
         ], [1700, 3000, 4660]),
         spacer(80),
@@ -249,9 +249,9 @@ const doc = new Document({
 
         // 10. Community
         h1("10. Community: Bringing Young Minds Together"),
-        p("IXEA is as much a movement as a standard. Its purpose is to convene the next generation of African technologists and give them real infrastructure to build. The community is organised around three structures borrowed from the most successful global ecosystems:"),
+        p("IEXA is as much a movement as a standard. Its purpose is to convene the next generation of African technologists and give them real infrastructure to build. The community is organised around three structures borrowed from the most successful global ecosystems:"),
         bullet("country chapters — starting with Nigeria — that localise the framework, run events and connect members on the ground.", "National Hubs"),
-        bullet("free training, certification and mentorship that turns students and young developers into the engineers who run Africa's data infrastructure.", "IXEA Academy"),
+        bullet("free training, certification and mentorship that turns students and young developers into the engineers who run Africa's data infrastructure.", "IEXA Academy"),
         bullet("flagship deployments — a live e-invoicing data space, a cross-border identity pilot — that prove the framework in the real world.", "Lighthouse Projects"),
 
         // 11. Roadmap
@@ -267,7 +267,7 @@ const doc = new Document({
 
         // 12. Call to action
         h1("12. Get Involved"),
-        p("IXEA will be built by the people who show up. Whether you write code, run infrastructure or set policy, there is a seat for you."),
+        p("IEXA will be built by the people who show up. Whether you write code, run infrastructure or set policy, there is a seat for you."),
         bullet("contribute to the specs, run a node in the sandbox, or join a working group.", "Developers"),
         bullet("become a founding member, run a certified node, and help shape the standard.", "Providers & vendors"),
         bullet("co-design national profiles and bring the Once-Only Principle to your citizens.", "Regulators & agencies"),
@@ -284,6 +284,6 @@ const doc = new Document({
 });
 
 Packer.toBuffer(doc).then((buf) => {
-  fs.writeFileSync("IXEA-Whitepaper.docx", buf);
-  console.log("wrote IXEA-Whitepaper.docx");
+  fs.writeFileSync("IEXA-Whitepaper.docx", buf);
+  console.log("wrote IEXA-Whitepaper.docx");
 });

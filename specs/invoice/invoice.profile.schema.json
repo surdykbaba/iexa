@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ixea.africa/specs/invoice/invoice.profile.schema.json",
-  "title": "IXEA Invoicing Profile v0.1",
-  "description": "Minimal e-invoice payload carried in the IXEA envelope. Aligns conceptually with EN 16931 / Peppol BIS core fields; a working subset for the reference implementation.",
+  "$id": "https://iexa.africa/specs/invoice/invoice.profile.schema.json",
+  "title": "IEXA Invoicing Profile v0.1",
+  "description": "Minimal e-invoice payload carried in the IEXA envelope. Aligns conceptually with EN 16931 / Peppol BIS core fields; a working subset for the reference implementation.",
   "type": "object",
   "required": ["invoiceNumber", "issueDate", "currency", "supplier", "customer", "lines", "totals"],
   "properties": {
@@ -61,7 +61,7 @@
         "name": { "type": "string" },
         "taxId": { "type": "string" },
         "country": { "type": "string", "description": "ISO 3166-1 alpha-2." },
-        "memberId": { "type": "string", "description": "IXEA member ID, if on-network." }
+        "memberId": { "type": "string", "description": "IEXA member ID, if on-network." }
       }
     }
   }

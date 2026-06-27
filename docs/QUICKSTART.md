@@ -1,6 +1,6 @@
 # Quickstart
 
-Run a tiny IXEA network on your machine — a Registry and two Member Nodes — and
+Run a tiny IEXA network on your machine — a Registry and two Member Nodes — and
 send a signed invoice between them.
 
 ## Prerequisites

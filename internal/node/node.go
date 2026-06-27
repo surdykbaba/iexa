@@ -1,4 +1,4 @@
-// Package node implements an IXEA Member Node — the single secure gateway each
+// Package node implements an IEXA Member Node — the single secure gateway each
 // participant runs. It connects once to the Registry, then signs and routes
 // messages to any other participant the Registry can resolve. Messages travel
 // directly node-to-node; the node verifies every inbound message against the
@@ -15,9 +15,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/surdykbaba/ixea/internal/message"
-	"github.com/surdykbaba/ixea/internal/registry"
-	"github.com/surdykbaba/ixea/internal/trust"
+	"github.com/surdykbaba/iexa/internal/message"
+	"github.com/surdykbaba/iexa/internal/registry"
+	"github.com/surdykbaba/iexa/internal/trust"
 )
 
 // Node is a running Member Node.
@@ -65,7 +65,7 @@ type sendRequest struct {
 // Routes wires the node HTTP API.
 func (n *Node) Routes(mux *http.ServeMux) {
 	mux.HandleFunc("GET /healthz", func(w http.ResponseWriter, _ *http.Request) {
-		writeJSON(w, http.StatusOK, map[string]string{"status": "ok", "service": "ixea-node", "id": n.ID})
+		writeJSON(w, http.StatusOK, map[string]string{"status": "ok", "service": "iexa-node", "id": n.ID})
 	})
 	mux.HandleFunc("GET /v1/info", func(w http.ResponseWriter, _ *http.Request) {
 		writeJSON(w, http.StatusOK, map[string]string{

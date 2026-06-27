@@ -1,6 +1,6 @@
 # Architecture
 
-IXEA's reference implementation is a deliberately small realisation of the
+IEXA's reference implementation is a deliberately small realisation of the
 four-corner, federated model. It demonstrates the core trust properties; it is
 not yet production infrastructure.
 

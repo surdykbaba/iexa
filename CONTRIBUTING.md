@@ -1,6 +1,6 @@
-# Contributing to IXEA
+# Contributing to IEXA
 
-IXEA is built in the open by the community. Whether you write code, run
+IEXA is built in the open by the community. Whether you write code, run
 infrastructure, or shape policy, there's a way in. This guide gets you from zero
 to your first contribution.
 
@@ -11,15 +11,15 @@ to your first contribution.
 - **Docs** — quickstarts, architecture notes, translations.
 - **Triage** — reproduce issues, review pull requests, test the demo on your platform.
 
-You do not need permission to start. Pick a [good first issue](https://github.com/surdykbaba/ixea/labels/good%20first%20issue), comment that you're on it, and open a PR.
+You do not need permission to start. Pick a [good first issue](https://github.com/surdykbaba/iexa/labels/good%20first%20issue), comment that you're on it, and open a PR.
 
 ## Local setup
 
 Prerequisites: **Go 1.22+**.
 
 ```bash
-git clone https://github.com/surdykbaba/ixea.git
-cd ixea
+git clone https://github.com/surdykbaba/iexa.git
+cd iexa
 go build ./...        # compile everything
 bash scripts/demo.sh  # run a 2-node network end-to-end
 ```
@@ -63,7 +63,7 @@ Changes to the envelope or a data-space profile go through a lightweight RFC:
 
 ## Governance
 
-IXEA is a neutral, community-governed project. Technical decisions are made in
+IEXA is a neutral, community-governed project. Technical decisions are made in
 the open through issues, PRs and working groups. The standard belongs to the
 community — not to any company or individual.
 

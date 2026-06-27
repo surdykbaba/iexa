@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# IXEA reference network demo.
+# IEXA reference network demo.
 # Boots a Registry and two Member Nodes, then sends a signed invoice from one to
 # the other and shows it arriving verified. Tears everything down on exit.
 set -euo pipefail

@@ -1,8 +1,8 @@
-# IXEA — Interoperability and Exchange Alliance
+# IEXA — Interoperability and Exchange Alliance
 
 **Together towards a federated and sovereign data infrastructure for Africa.**
 
-IXEA is an open, community-governed framework for secure, federated data exchange
+IEXA is an open, community-governed framework for secure, federated data exchange
 across Africa — invoicing, identity and trusted data. It is a neutral standard, a
 trust framework, and a community. Not a product, not owned by any single company.
 
@@ -10,7 +10,7 @@ Inspired by the world's most successful interoperability initiatives —
 [X-Road](https://x-road.global), [Gaia-X](https://gaia-x.eu),
 [Peppol](https://peppol.org) and [MOSIP](https://mosip.io).
 
-🌍 **Website:** https://surdykbaba.github.io/ixea/
+🌍 **Website:** https://surdykbaba.github.io/iexa/
 
 ## The reference implementation
 
@@ -37,7 +37,7 @@ other, and shows it arriving **verified**. Full walkthrough in
 | `specs/` | JSON Schema: the envelope + invoicing & identity profiles. |
 | `scripts/demo.sh` | End-to-end local network demo. |
 | `index.html` | The project website (self-contained). |
-| `IXEA-Whitepaper.docx` | Concept & Founding Framework (v0.1 working draft). |
+| `IEXA-Whitepaper.docx` | Concept & Founding Framework (v0.1 working draft). |
 
 ## The framework
 

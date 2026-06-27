@@ -1,3 +1,3 @@
-module github.com/surdykbaba/ixea
+module github.com/surdykbaba/iexa
 
 go 1.22

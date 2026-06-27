@@ -1,4 +1,4 @@
-// Package registry implements the IXEA shared Registry (the directory / trust
+// Package registry implements the IEXA shared Registry (the directory / trust
 // list). It holds only metadata about Member Nodes — their ID, name, network
 // endpoint, published public key and the data spaces they participate in. It
 // never stores or relays business data: messages travel node-to-node. This is
@@ -68,7 +68,7 @@ func (s *Store) List() []Member {
 // Routes wires the Registry HTTP API onto a mux (Go 1.22 pattern routing).
 func (s *Store) Routes(mux *http.ServeMux) {
 	mux.HandleFunc("GET /healthz", func(w http.ResponseWriter, _ *http.Request) {
-		writeJSON(w, http.StatusOK, map[string]string{"status": "ok", "service": "ixea-registry"})
+		writeJSON(w, http.StatusOK, map[string]string{"status": "ok", "service": "iexa-registry"})
 	})
 	mux.HandleFunc("POST /v1/register", func(w http.ResponseWriter, r *http.Request) {
 		var m Member

@@ -1,4 +1,4 @@
-// Package trust holds the cryptographic identity primitives of the IXEA
+// Package trust holds the cryptographic identity primitives of the IEXA
 // reference implementation. Every Member Node owns an Ed25519 key pair; its
 // public key is published to the Registry so that any counterparty can verify
 // the messages it signs. There is no central key escrow — keys stay at the node.
